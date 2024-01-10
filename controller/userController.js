@@ -27,8 +27,8 @@ const registerUser = asyncHandler(async (req,res) => {
 const loginUser = asyncHandler(async (req,res) => {
     try {
         const { email, password } = req.body;
-        const doesUserExist = await userModel.findOne({ email });
-        if (!doesUserExist && await userModel.matchPassword(password)) {
+        const doesUserExist = await userCollection.findOne({ email });
+        if (!doesUserExist && await userCollection.matchPassword(password)) {
             throw new Error("Invalid email or password");
         } else {
             const { email: userEmail, _id, role } = doesUserExist;
@@ -66,7 +66,7 @@ const logout = asyncHandler(async (req, res) => {
 
 const getUser = asyncHandler(async(req, res) => {
        const findUser =  await userCollection.findOne({_id: req.params.id});
-            if(findUser) return res.json({userDetails: findAllUser})
+            if(findUser) return res.json({userDetails: findUser})
 
 });
 
