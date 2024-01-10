@@ -2,6 +2,7 @@ const {userCollection} = require('../models/userModel');
 const asyncHandler = require('express-async-handler');
 const {registerSchema} = require('../middleware/validationSchema')
 const { createRefreshToken, generateFreshToken, sendRefreshToken } = require('../utils/generateToken')
+const Jwt = require('jsonwebtoken');
 
 const registerUser = asyncHandler(async (req,res) => {
     const {firstName, surname, email, phone, password, referral} = req.body;
