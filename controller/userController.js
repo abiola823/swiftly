@@ -64,12 +64,16 @@ const logout = asyncHandler(async (req, res) => {
     });
 });
 
-const getAllUser = asyncHandler(async(req, res) => {
-       const findAllUser =  await userCollection.findOne({_id: req.params.id});
-            if(findAllUser) return res.json({userDetails: findAllUser})
+const getUser = asyncHandler(async(req, res) => {
+       const findUser =  await userCollection.findOne({_id: req.params.id});
+            if(findUser) return res.json({userDetails: findAllUser})
 
 });
 
+const getAllUser = asyncHandler(async (req, res) => {
+    const findAllUser = await userCollection.find();
+    res.send({AllUsers: findAllUser})
+});
 
 const getNewToken = asyncHandler(async (req, res) => {
   generateFreshToken(req, res)
@@ -81,5 +85,6 @@ module.exports = {
     logout,
     getNewToken,
     loginUser,
-    getAllUser
+    getAllUser,
+    getUser
 }

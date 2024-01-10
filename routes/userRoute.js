@@ -14,7 +14,9 @@ router.use(isUserLoggedIn);
 
 router.get('/refresh', getNewToken);
 
-router.get('/admins-only/all-users', adminsOnly, loginUser);
+router.get('getUser');
+
+router.get('/admins-only/all-users', adminsOnly, getAllUser);
 
 
 
