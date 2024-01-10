@@ -10,9 +10,9 @@ router.post('/logout', logout);
 
 router.post('/login', loginUser);
 
-router.use(isUserLoggedIn);
-
 router.get('/refresh', getNewToken);
+
+router.use(isUserLoggedIn);
 
 router.get('getUser');
 
