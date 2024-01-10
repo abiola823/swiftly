@@ -27,8 +27,16 @@ function isUserLoggedIn(req, res, next) {
   
   }
 
+  const adminsOnly = async(req, res, next) => {
+      if(req.decoded.role !== "admin") {
+        next();
+      }
+      res.send('You are not an admin');
+  }
+
 
 module.exports =  {
-    isUserLoggedIn
+    isUserLoggedIn,
+    adminsOnly
     
   };
