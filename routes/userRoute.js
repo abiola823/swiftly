@@ -14,7 +14,7 @@ router.get('/refresh', getNewToken);
 
 router.use(isUserLoggedIn);
 
-router.get('/getUser', getUser);
+router.get('/getUser/:id', getUser);
 
 
 
