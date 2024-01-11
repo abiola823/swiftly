@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 3000;
 const path = require('path');
 const db = require('./config/db');
 const userRoute = require('./routes/userRoute');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 db();
 

@@ -32,8 +32,8 @@ const loginUser = asyncHandler(async (req,res) => {
         if (!doesUserExist && await userCollection.matchPassword(password)) {
             throw new Error("Invalid email or password");
         } else {
-            const { email: userEmail, _id, role } = doesUserExist;
-            const refreshToken = createRefreshToken(userEmail, _id, role);
+            const { email: userEmail, _id} = doesUserExist;
+            const refreshToken = createRefreshToken(userEmail, _id);
             //   doesUserExist.refreshToken = refreshToken;
             sendRefreshToken(res, refreshToken);
             req.refreshToken = refreshToken;
@@ -41,7 +41,6 @@ const loginUser = asyncHandler(async (req,res) => {
             const token = Jwt.sign({
                 email: userEmail,
                 userId: _id,
-                role
             }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5m' });
 
             return res.send({
@@ -71,13 +70,9 @@ const getUser = asyncHandler(async(req, res) => {
 
 });
 
-const getAllUser = asyncHandler(async (req, res) => {
-    const findAllUser = await userCollection.find();
-    res.send({AllUsers: findAllUser})
-});
 
 const getNewToken = asyncHandler(async (req, res) => {
-  generateFreshToken(req, res)
+  generateFreshToken(req, res);
 });
 
 
@@ -86,6 +81,5 @@ module.exports = {
     logout,
     getNewToken,
     loginUser,
-    getAllUser,
     getUser
 }

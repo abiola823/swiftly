@@ -5,11 +5,11 @@ dotenv.config();
 
 
 
-const createRefreshToken = (userEmail, _id, role) => {
+const createRefreshToken = (userEmail, _id) => {
     return Jwt.sign({
     email: userEmail,
     userId: _id,
-    role }, process.env.REFRESH_TOKEN_SECRET, {
+ }, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: '30d'
   });
 }
@@ -39,7 +39,6 @@ const generateFreshToken = async (req, res) => {
             const  accesstoken = Jwt.sign({
               email: decoded.email,
                 userId: decoded._id,
-                role: decoded.role
             }, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '5m'});
             res.json({accesstoken});
         })

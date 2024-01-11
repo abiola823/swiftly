@@ -16,7 +16,7 @@ router.use(isUserLoggedIn);
 
 router.get('getUser');
 
-router.get('/admins-only/all-users', adminsOnly, getAllUser);
+
 
 
 
