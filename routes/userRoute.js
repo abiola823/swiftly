@@ -1,5 +1,5 @@
-const {registerUser,logout, loginUser, getNewToken, getAllUser} = require('../controller/userController');
-const {isUserLoggedIn, adminsOnly} = require('../middleware/middleware');
+const {registerUser,logout, loginUser, getNewToken, getUser} = require('../controller/userController');
+const {isUserLoggedIn} = require('../middleware/middleware');
 const express = require('express');
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.get('/refresh', getNewToken);
 
 router.use(isUserLoggedIn);
 
-router.get('getUser');
+router.get('/getUser', getUser);
 
 
 
