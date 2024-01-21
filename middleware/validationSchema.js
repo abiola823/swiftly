@@ -7,7 +7,7 @@ const registerSchema = (req, res) => {
             email: joi.string().email().required(),
             phone: joi.number().required(),
             password: joi.string().required().min(7).max(15),
-            referral: joi.string().optional()
+           
         });
         const {error} = registerValidationSchema.validate(req.body);
         if (error) return res.send(error.message);
