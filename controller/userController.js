@@ -18,7 +18,7 @@ const registerUser = asyncHandler(async (req,res) => {
         password,
         referral
     });
-   return res.status(201).json({userDetails: user});
+   return res.status(201).send("User created successfully");
   } catch (error) {
         res.send(`could not create account because: ${error.message}`);
   }
