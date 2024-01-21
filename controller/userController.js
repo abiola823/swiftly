@@ -20,7 +20,7 @@ const registerUser = asyncHandler(async (req,res) => {
     });
    return res.status(201).send("User created successfully");
   } catch (error) {
-        res.send(`could not create account because: ${error.message}`);
+       return res.send(`could not create account because: ${error.message}`);
   }
 
 });
