@@ -29,7 +29,8 @@ const userSchema = new mongoose.Schema({
 
         referral: {
             type: String,
-            required: false
+            required: false,
+            default: "no"
         },
 
 
