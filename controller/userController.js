@@ -7,7 +7,7 @@ const Jwt = require('jsonwebtoken');
 const registerUser = asyncHandler(async (req,res) => {
     const {firstName, surname, email, phone, password, referral} = req.body;
   try {
-    const doesUserExist = await userCollection.find({email});
+    const doesUserExist = await userCollection.findOne({email});
         if(doesUserExist) return res.send("User exists");
     registerSchema(req, res);
     const user = await userCollection.create({
