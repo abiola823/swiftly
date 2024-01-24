@@ -29,9 +29,7 @@ const loginUser = asyncHandler(async (req,res) => {
     try {
         const { email, password } = req.body;
         const doesUserExist = await userCollection.findOne({ email });
-        if (!doesUserExist && await userCollection.matchPassword(password)) {
-            throw new Error("Invalid email or password");
-        } else {
+        if (doesUserExist && await doesUserExist.matchPassword(password)) {
             const { email: userEmail, _id} = doesUserExist;
             const refreshToken = createRefreshToken(userEmail, _id);
             //   doesUserExist.refreshToken = refreshToken;
@@ -47,8 +45,10 @@ const loginUser = asyncHandler(async (req,res) => {
                 message: "Sign in Successful",
                 token
             });
-
-
+           
+        } else {
+           
+            res.send("Invalid email or password");
         }
     } catch (error) {
         console.log(error);
