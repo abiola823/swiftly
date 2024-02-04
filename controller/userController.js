@@ -48,7 +48,7 @@ const loginUser = asyncHandler(async (req,res) => {
            
         } else {
            
-            res.send("Invalid email or password");
+            res.status(401).send("Invalid email or password");
         }
     } catch (error) {
         console.log(error);
