@@ -92,6 +92,8 @@ const passwordReset = asyncHandler(async(req, res) => {
     
             await userCollection.findByIdAndUpdate(user.userId, {
                 password: newHashedPassword
+            }, {
+                new: true
             });
     
             await forgetPasswordCollection.findOneAndDelete({token});
